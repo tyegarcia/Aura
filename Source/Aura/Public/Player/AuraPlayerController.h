@@ -8,6 +8,7 @@
 
 class UInputMappingContext;
 class UInputAction;
+class IEnemyInterface;
 
 /**
  * Custom PlayerController for the Aura project. Handles player input and interactions.
@@ -20,6 +21,7 @@ class AURA_API AAuraPlayerController : public APlayerController
 public:
 	// Constructor for AAuraPlayerController.
 	AAuraPlayerController();
+	virtual void PlayerTick(float DeltaTime) override;
 
 protected:
 	// Called when the game starts or when spawned.
@@ -36,4 +38,8 @@ private:
 	TObjectPtr<UInputAction> MoveAction;
 	// Function to handle movement based on input action values.
 	void Move(const struct FInputActionValue& InputActionValue);
+
+	void CursorTrace();
+	IEnemyInterface* LastActor;
+	IEnemyInterface* CurrentActor;
 };
